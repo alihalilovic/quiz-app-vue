@@ -13,6 +13,7 @@ const quizFormVisibility = ref(false);
 
 onBeforeMount(() => {
   shuffleQuestions();
+  shuffleAnswers(); // CHECK THIS LATER
 });
 
 const shuffleQuestions = () => {
@@ -88,10 +89,20 @@ const handleAddQuestionBlock = ({
   </div>
   <QuizFinished :finished="quizFinished" @restart="restartQuiz" />
 
-  <div v-if="quizFormVisibility">
-    <QuizForm
-      @addQuestionBlock="(payload) => handleAddQuestionBlock(payload)"
-    />
+  <div class="quiz-form-container">
+    <div v-if="quizFormVisibility">
+      <QuizForm
+        @addQuestionBlock="(payload) => handleAddQuestionBlock(payload)"
+        @hideForm="quizFormVisibility = false"
+      />
+    </div>
+    <button
+      class="btn toggle-form"
+      @click="quizFormVisibility = !quizFormVisibility"
+      v-else
+    >
+      Show form
+    </button>
   </div>
 </template>
 
@@ -136,5 +147,35 @@ body {
 
 * {
   font-family: "Arial";
+}
+
+.btn {
+  border-radius: 10px;
+  outline: none;
+  border: none;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+}
+
+.btn:hover {
+  cursor: pointer;
+}
+
+.toggle-form {
+  position: fixed;
+  text-transform: uppercase;
+  font-weight: bold;
+  bottom: 25px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  font-weight: thin;
+  background: linear-gradient(45deg, deeppink, #aa00cc);
+  color: white;
+  font-size: 1.2rem;
+  transition: all 0.2s ease;
+}
+
+.toggle-form:hover {
+  opacity: 0.8;
 }
 </style>
