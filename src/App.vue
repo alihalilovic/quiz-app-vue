@@ -52,9 +52,7 @@ const progressForward = () => {
 };
 
 const handleAnswerClick = ({ answer, position }) => {
-  if (quizFinished.value) return
-
-  if (questionBlocks.value[position].correctAnswer === answer) {
+  if (questionBlocks.value[position].correctAnswer === answer && !quizFinished.value) {
     quizPoints.value++;
   }
 
