@@ -53,7 +53,7 @@ const handleSubmitQuestionBlock = () => {
   background: linear-gradient(45deg, #17225c, #2b998e);
   width: 100vw;
   height: 100vh;
-  position: fixed;
+  position: absolute;
   left: 0;
   top: 0;
   z-index: 999;
