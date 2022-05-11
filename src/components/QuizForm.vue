@@ -66,7 +66,6 @@ const handleSubmitQuestionBlock = () => {
 form {
   display: flex;
   flex-direction: column;
-  width: 50%;
   max-width: 550px;
 }
 
